@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { Login } from './features/auth/login/login';
-import { Register } from './features/auth/register/register';
 
 import { MainLayout } from './layout/main-layout/main-layout';
 
@@ -24,14 +23,10 @@ export const routes: Routes = [
   },
 
   {
-    path: 'register',
-    component: Register
-  },
-
-  {
     path: '',
     component: MainLayout,
     canActivate: [authGuard],
+
     children: [
 
       {
@@ -41,6 +36,11 @@ export const routes: Routes = [
 
       {
         path: 'estudiantes/nuevo',
+        component: EstudianteForm
+      },
+
+      {
+        path: 'estudiantes/editar/:id',
         component: EstudianteForm
       },
 
@@ -77,4 +77,5 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'login'
   }
+
 ];

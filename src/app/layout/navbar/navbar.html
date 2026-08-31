@@ -1,1 +1,13 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="navbar-title">
+    Sistema Académico
+  </div>
+
+  <div class="navbar-user">
+    <span>{{ username }}</span>
+
+    <button (click)="logout()">
+      Cerrar sesión
+    </button>
+  </div>
+</nav>

@@ -1,1 +1,196 @@
-<p>estudiante-list works!</p>
+<div class="page">
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>
+        Estudiantes
+      </h1>
+
+      <p>
+        Administración de estudiantes registrados
+      </p>
+
+    </div>
+
+    <a
+      routerLink="/estudiantes/nuevo"
+      class="btn-new"
+    >
+      + Nuevo estudiante
+    </a>
+
+  </div>
+
+
+  @if (errorMessage()) {
+
+    <div class="alert-error">
+
+      {{ errorMessage() }}
+
+    </div>
+
+  }
+
+
+  @if (successMessage()) {
+
+    <div class="alert-success">
+
+      {{ successMessage() }}
+
+    </div>
+
+  }
+
+
+  @if (
+    estudiantes().length === 0 &&
+    !errorMessage()
+  ) {
+
+    <div class="empty-state">
+
+      No hay estudiantes registrados.
+
+    </div>
+
+  }
+
+
+  @if (estudiantes().length > 0) {
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Nivel</th>
+            <th>Sección</th>
+            <th>Estado</th>
+            <th>Cursos</th>
+            <th>Acciones</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (
+            estudiante of estudiantes();
+            track estudiante.idEstudiante
+          ) {
+
+            <tr>
+
+              <td>
+                {{ estudiante.idEstudiante }}
+              </td>
+
+
+              <td>
+                {{ estudiante.nombre }}
+                {{ estudiante.apellido }}
+              </td>
+
+
+              <td>
+                {{ estudiante.usuario?.username }}
+              </td>
+
+
+              <td>
+                {{ estudiante.nivel }}
+              </td>
+
+
+              <td>
+                {{ estudiante.seccion }}
+              </td>
+
+
+              <td>
+                {{ estudiante.estado }}
+              </td>
+
+
+              <td>
+
+                {{
+                  estudiante
+                    .cursosAsignados
+                    ?.length || 0
+                }}
+
+              </td>
+
+
+              <td>
+
+                <div class="actions">
+
+                  <a
+                    [routerLink]="[
+                      '/estudiantes/editar',
+                      estudiante.idEstudiante
+                    ]"
+                    class="btn-edit"
+                  >
+                    Editar
+                  </a>
+
+
+                  <button
+                    type="button"
+                    class="btn-delete"
+                    [disabled]="
+                      eliminandoId() ===
+                      estudiante.idEstudiante
+                    "
+                    (click)="
+                      eliminar(estudiante)
+                    "
+                  >
+
+                    @if (
+                      eliminandoId() ===
+                      estudiante.idEstudiante
+                    ) {
+
+                      Eliminando...
+
+                    } @else {
+
+                      Eliminar
+
+                    }
+
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  }
+
+</div>
