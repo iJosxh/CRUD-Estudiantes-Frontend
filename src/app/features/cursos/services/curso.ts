@@ -4,6 +4,29 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
 
+export interface CatalogoCurso {
+  idCatalogoDetalle: number;
+  nombre: string;
+}
+
+export interface CatedraticoCurso {
+  idCatedratico: number;
+  nombre: string;
+  apellido: string;
+}
+
+export interface Curso {
+  idCurso: number;
+  nombreCurso: string;
+
+  nivel: CatalogoCurso;
+  grado: CatalogoCurso;
+  carrera: CatalogoCurso | null;
+  estado: CatalogoCurso;
+
+  catedratico: CatedraticoCurso;
+}
+
 export interface CrearCursoRequest {
   nombreCurso: string;
   idNivel: number;
@@ -24,6 +47,12 @@ export class CursoService {
   constructor(
     private http: HttpClient
   ) {}
+
+  getCursos(): Observable<Curso[]> {
+    return this.http.get<Curso[]>(
+      this.apiUrl
+    );
+  }
 
   crearCurso(
     curso: CrearCursoRequest
