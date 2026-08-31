@@ -9,6 +9,28 @@ export interface UsuarioDisponible {
   username: string;
 }
 
+export interface CrearUsuarioRequest {
+  username: string;
+  password: string;
+  idRol: number;
+  idEstado: number;
+}
+
+export interface CrearUsuarioResponse {
+  idUsuario: number;
+  username: string;
+
+  rol: {
+    idCatalogoDetalle: number;
+    nombre: string;
+  };
+
+  estado: {
+    idCatalogoDetalle: number;
+    nombre: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +48,16 @@ export class UsuarioService {
 
     return this.http.get<UsuarioDisponible[]>(
       `${this.apiUrl}/disponibles-estudiantes`
+    );
+  }
+
+  crearUsuario(
+    usuario: CrearUsuarioRequest
+  ): Observable<CrearUsuarioResponse> {
+
+    return this.http.post<CrearUsuarioResponse>(
+      this.apiUrl,
+      usuario
     );
   }
 }

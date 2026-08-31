@@ -131,3 +131,27 @@ button {
   font-size: 14px;
   text-align: center;
 }
+
+.register-link {
+  display: flex;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 20px;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  a {
+    color: #2563eb;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
