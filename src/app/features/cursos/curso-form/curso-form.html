@@ -1,1 +1,260 @@
-<p>curso-form works!</p>
+<div class="page">
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>
+        Crear curso
+      </h1>
+
+      <p>
+        Registra un nuevo curso en el sistema
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="form-card">
+
+    @if (errorMessage()) {
+
+      <div class="alert-error">
+
+        {{ errorMessage() }}
+
+      </div>
+
+    }
+
+
+    @if (successMessage()) {
+
+      <div class="alert-success">
+
+        {{ successMessage() }}
+
+      </div>
+
+    }
+
+
+    <form
+      (ngSubmit)="guardar()"
+    >
+
+      <div class="form-grid">
+
+
+        <div class="form-group">
+
+          <label for="nombreCurso">
+            Nombre del curso
+          </label>
+
+          <input
+            id="nombreCurso"
+            type="text"
+            name="nombreCurso"
+            [(ngModel)]="nombreCurso"
+            placeholder="Ej. Matemática"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="nivel">
+            Nivel
+          </label>
+
+          <select
+            id="nivel"
+            name="idNivel"
+            [(ngModel)]="idNivel"
+          >
+
+            <option
+              [ngValue]="null"
+              disabled
+            >
+              Selecciona un nivel
+            </option>
+
+            @for (
+              nivel of niveles();
+              track nivel.idCatalogoDetalle
+            ) {
+
+              <option
+                [ngValue]="nivel.idCatalogoDetalle"
+              >
+                {{ nivel.nombre }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="grado">
+            Grado
+          </label>
+
+          <select
+            id="grado"
+            name="idGrado"
+            [(ngModel)]="idGrado"
+          >
+
+            <option
+              [ngValue]="null"
+              disabled
+            >
+              Selecciona un grado
+            </option>
+
+            @for (
+              grado of grados();
+              track grado.idCatalogoDetalle
+            ) {
+
+              <option
+                [ngValue]="grado.idCatalogoDetalle"
+              >
+                {{ grado.nombre }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="carrera">
+            Carrera
+          </label>
+
+          <select
+            id="carrera"
+            name="idCarrera"
+            [(ngModel)]="idCarrera"
+          >
+
+            <option
+              [ngValue]="null"
+              disabled
+            >
+              Selecciona una carrera
+            </option>
+
+            @for (
+              carrera of carreras();
+              track carrera.idCatalogoDetalle
+            ) {
+
+              <option
+                [ngValue]="carrera.idCatalogoDetalle"
+              >
+                {{ carrera.nombre }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="catedratico">
+            Catedrático
+          </label>
+
+          <select
+            id="catedratico"
+            name="idCatedratico"
+            [(ngModel)]="idCatedratico"
+          >
+
+            <option
+              [ngValue]="null"
+              disabled
+            >
+              Selecciona un catedrático
+            </option>
+
+            @for (
+              catedratico of catedraticos();
+              track catedratico.idCatedratico
+            ) {
+
+              <option
+                [ngValue]="catedratico.idCatedratico"
+              >
+                {{ catedratico.nombre }}
+                {{ catedratico.apellido }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Estado
+          </label>
+
+          <input
+            type="text"
+            value="Activo"
+            disabled
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="btn-save"
+          [disabled]="guardando()"
+        >
+
+          @if (guardando()) {
+
+            Guardando...
+
+          } @else {
+
+            Crear curso
+
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
