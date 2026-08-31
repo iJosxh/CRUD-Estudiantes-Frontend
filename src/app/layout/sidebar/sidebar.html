@@ -1,6 +1,6 @@
-<aside class="sidebar">
+<nav class="sidebar">
 
-  <nav>
+  @if (esAdministrador()) {
 
     <a
       routerLink="/estudiantes"
@@ -13,7 +13,7 @@
       routerLink="/cursos/nuevo"
       routerLinkActive="active"
     >
-      Cursos
+      Crear Curso
     </a>
 
     <a
@@ -30,6 +30,18 @@
       Cursos Asignados
     </a>
 
-  </nav>
+  }
 
-</aside>
+
+  @if (esEstudiante()) {
+
+    <a
+      routerLink="/estudiante-cursos"
+      routerLinkActive="active"
+    >
+      Mis Cursos
+    </a>
+
+  }
+
+</nav>

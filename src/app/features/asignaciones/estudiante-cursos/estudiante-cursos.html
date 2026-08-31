@@ -1,1 +1,217 @@
-<p>estudiante-cursos works!</p>
+<div class="page">
+
+  <div class="page-header">
+
+    @if (esAdministrador()) {
+
+      <h1>
+        Cursos asignados
+      </h1>
+
+      <p>
+        Estudiantes y sus cursos asignados
+      </p>
+
+    } @else {
+
+      <h1>
+        Mis cursos
+      </h1>
+
+      <p>
+        Cursos que tienes asignados
+      </p>
+
+    }
+
+  </div>
+
+
+  @if (errorMessage()) {
+
+    <div class="alert-error">
+
+      {{ errorMessage() }}
+
+    </div>
+
+  }
+
+
+  @if (
+    asignaciones().length === 0 &&
+    !errorMessage()
+  ) {
+
+    <div class="empty-state">
+
+      @if (esAdministrador()) {
+
+        No hay cursos asignados a estudiantes.
+
+      } @else {
+
+        No tienes cursos asignados.
+
+      }
+
+    </div>
+
+  }
+
+
+  @if (asignaciones().length > 0) {
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            @if (esAdministrador()) {
+
+              <th>
+                Estudiante
+              </th>
+
+            }
+
+            <th>
+              Curso
+            </th>
+
+            <th>
+              Nivel
+            </th>
+
+            <th>
+              Grado
+            </th>
+
+            <th>
+              Carrera
+            </th>
+
+            <th>
+              Catedrático
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (
+            asignacion of asignaciones();
+            track asignacion.idAsignacion
+          ) {
+
+            <tr>
+
+              @if (esAdministrador()) {
+
+                <td>
+
+                  <div class="student-name">
+
+                    {{ asignacion.estudiante.nombre }}
+                    {{ asignacion.estudiante.apellido }}
+
+                  </div>
+
+                  <small>
+
+                    Sección:
+                    {{ asignacion.estudiante.seccion }}
+
+                  </small>
+
+                </td>
+
+              }
+
+
+              <td>
+
+                <strong>
+                  {{ asignacion.curso.nombreCurso }}
+                </strong>
+
+              </td>
+
+
+              <td>
+
+                {{
+                  asignacion.curso.nivel?.nombre
+                  || '-'
+                }}
+
+              </td>
+
+
+              <td>
+
+                {{
+                  asignacion.curso.grado?.nombre
+                  || '-'
+                }}
+
+              </td>
+
+
+              <td>
+
+                {{
+                  asignacion.curso.carrera?.nombre
+                  || '-'
+                }}
+
+              </td>
+
+
+              <td>
+
+                @if (
+                  asignacion.curso.catedratico
+                ) {
+
+                  {{
+                    asignacion
+                      .curso
+                      .catedratico
+                      .nombre
+                  }}
+
+                  {{
+                    asignacion
+                      .curso
+                      .catedratico
+                      .apellido
+                  }}
+
+                } @else {
+
+                  -
+
+                }
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  }
+
+</div>

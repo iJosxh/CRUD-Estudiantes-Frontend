@@ -1,0 +1,129 @@
+.page {
+  width: 100%;
+}
+
+.page-header {
+  margin-bottom: 28px;
+
+  h1 {
+    margin: 0 0 5px;
+
+    color: #0f172a;
+
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+
+  background: white;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px 18px;
+
+  text-align: left;
+  vertical-align: middle;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  background: #f8fafc;
+
+  color: #475569;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+td {
+  color: #334155;
+
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.student-name {
+  margin-bottom: 3px;
+
+  color: #0f172a;
+
+  font-weight: 600;
+}
+
+td small {
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.alert-error {
+  margin-bottom: 20px;
+
+  padding: 14px 16px;
+
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+
+  background: #fee2e2;
+
+  color: #991b1b;
+
+  font-size: 14px;
+}
+
+.empty-state {
+  padding: 60px 20px;
+
+  background: white;
+
+  border-radius: 10px;
+
+  color: #64748b;
+
+  text-align: center;
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 800px) {
+
+  th,
+  td {
+    padding: 12px;
+  }
+
+}
